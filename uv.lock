@@ -303,6 +303,7 @@ dependencies = [
     { name = "google-adk" },
     { name = "google-genai" },
     { name = "google-generativeai" },
+    { name = "greenlet" },
 ]
 
 [package.metadata]
@@ -311,6 +312,7 @@ requires-dist = [
     { name = "google-adk", specifier = ">=1.19.0" },
     { name = "google-genai", specifier = ">=1.52.0" },
     { name = "google-generativeai", specifier = ">=0.8.5" },
+    { name = "greenlet", specifier = ">=3.2.4" },
 ]
 
 [[package]]
