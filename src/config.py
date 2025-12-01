@@ -25,3 +25,5 @@ retry_config=types.HttpRetryOptions(
     initial_delay=1,
     http_status_codes=[429, 500, 503, 504], # Retry on these HTTP errors
 )
+
+DB_PATH = os.getenv("DB_PATH", "./db/customer_support.db")

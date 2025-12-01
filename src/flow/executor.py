@@ -1,4 +1,6 @@
 from typing import Any, Dict
+import os
+from pathlib import Path
 
 from google.adk.agents import Agent, LlmAgent
 from google.adk.apps.app import App, EventsCompactionConfig
@@ -8,6 +10,7 @@ from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 from google.adk.tools.tool_context import ToolContext
 from google.genai import types
+from config import DB_PATH
 
 print("✅ ADK components imported successfully.")
 
@@ -23,9 +26,14 @@ class FlowExecutor:
         self.user_id = user_id  
         self.session_id = session_id
         self.model_name = model_name
+        
+        # Ensure db directory exists before creating database
+        db_path = Path(DB_PATH).parent
+        db_path.mkdir(parents=True, exist_ok=True)
+        
         #self.session_service = InMemorySessionService()
         self.session_service = DatabaseSessionService(
-            db_url="sqlite+aiosqlite:///./db/customer_support.db",
+            db_url=f"sqlite+aiosqlite:///{DB_PATH}",
         )
         print("✅ FlowExecutor initialized.")
     async def agent_runner(
